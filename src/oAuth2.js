@@ -42,7 +42,13 @@ export class OAuth2 {
         if(this.defaults.display === 'inline'){
             var loginUrl = this.defaults.authorizationEndpoint;
             
-            var addAttr = {grant_type: this.defaults.grant_type, client_id: this.defaults.client_id};
+            var addAttr;
+            if(this.defaults.client_id){
+                addAttr = {grant_type: this.defaults.grant_type, client_id: this.defaults.client_id};
+            }else{
+                addAttr = {grant_type: this.defaults.grant_type};
+            }
+            
             if(typeof userData === 'string'){
                 for (var key in addAttr) {
                     if (userData != "") {
